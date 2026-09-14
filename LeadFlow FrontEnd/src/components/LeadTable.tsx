@@ -7,12 +7,22 @@ export default function LeadTable({ leads, onSelect }: Props) {
     <div className="table-scroll">
       <table>
         <caption className="sr-only">Müşteri adayları</caption>
-        <thead><tr>{['Firma / kişi', 'İletişim', 'Kaynak', 'Durum', 'Sorumlu', 'Sonraki takip'].map(title => <th scope="col" key={title}>{title}</th>)}</tr></thead>
+        <thead><tr>{['Firma / kişi', 'İletişim', 'Kaynak', 'Durum', 'Sorumlu', 'Sonraki takip', 'İşlemler'].map(title => <th scope="col" key={title}>{title}</th>)}</tr></thead>
         <tbody>{leads.map(lead => (
-          <tr key={lead.id} onClick={() => onSelect(lead.id)}>
-            <td><button className="text-button" onClick={() => onSelect(lead.id)}>{lead.company}</button><small>{lead.name}</small></td>
+          <tr key={lead.id}>
+            <td><strong>{lead.company}</strong><small>{lead.name}</small></td>
             <td>{lead.email || 'E-posta yok'}<small>{lead.phone || 'Telefon yok'}</small></td>
             <td>{lead.source}</td><td><span className="badge">{lead.status}</span></td><td>{lead.owner}</td><td>{formatDate(lead.followUp)}</td>
+            <td className="lead-actions">
+              <button
+                type="button"
+                className="secondary compact-button"
+                aria-label={`${lead.company} detaylarını aç`}
+                onClick={() => onSelect(lead.id)}
+              >
+                Detaylar
+              </button>
+            </td>
           </tr>
         ))}</tbody>
       </table>

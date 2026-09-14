@@ -28,7 +28,6 @@ form > label { margin-bottom: 16px; }
 table { border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; }
 th { background: var(--color-page); color: var(--color-muted); font-weight: 600; white-space: nowrap; }
 th, td { padding: 16px 12px; border-bottom: 1px solid var(--color-border); }
-tbody tr { cursor: pointer; }
 tbody tr:hover { background: var(--color-brand-soft); }
 .text-button { background: transparent; color: var(--color-brand-dark); padding: 0; text-align: left; }
 .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; background: var(--color-brand-soft); color: var(--color-brand-dark); white-space: nowrap; }
@@ -43,4 +42,77 @@ tbody tr:hover { background: var(--color-brand-soft); }
   .stat, .panel { padding: 16px; }
   .form-grid { grid-template-columns: 1fr; }
   .filters > label { width: 100%; }
+}
+
+/* Liste başlığında küçük ekleme düğmesi, her satırda detay işlemi. */
+.lead-list-heading { margin-bottom: 20px; }
+.lead-list-heading h2 { margin-bottom: 4px; }
+.compact-button { padding: 8px 12px; font-size: 14px; white-space: nowrap; min-height: 44px; }
+.lead-actions { text-align: right; }
+
+/* Sol menü ve içerik: mobilde menü üstte, içerik altında kalır. */
+.app-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: 100vh; }
+.app-layout > .dashboard { width: 100%; min-width: 0; }
+.sidebar { background: var(--color-surface); border-right: 1px solid var(--color-border); padding: 32px 16px; }
+.sidebar-brand { padding: 0 12px 28px; color: var(--color-brand-dark); font-size: 22px; font-weight: 700; letter-spacing: 2px; }
+.sidebar-brand span { display: block; color: var(--color-muted); font-size: 14px; letter-spacing: 0; font-weight: 400; }
+.sidebar nav { display: grid; gap: 8px; }
+.nav-button { background: transparent; color: var(--color-text); text-align: left; min-height: 44px; }
+.nav-button.active { background: var(--color-brand-soft); color: var(--color-brand-dark); border-color: var(--color-brand); }
+@media (max-width: 1000px) {
+  .app-layout .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .app-layout { grid-template-columns: minmax(0, 1fr); }
+  .sidebar { padding: 16px; border-right: 0; border-bottom: 1px solid var(--color-border); }
+  .sidebar-brand { padding: 0 0 12px; }
+  .sidebar nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .nav-button { padding: 8px; font-size: 13px; text-align: center; }
+}
+
+/* Tablo ve detay kardeş alanlar: geniş ekranda yan yana. */
+.leads-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+.leads-layout.has-detail { grid-template-columns: minmax(0, 1fr) 340px; }
+.leads-layout > .panel { min-width: 0; margin-bottom: 0; }
+.leads-layout .detail { overflow-wrap: anywhere; }
+.leads-layout .detail .form-grid { grid-template-columns: minmax(0, 1fr); }
+.leads-layout .detail .section-heading { align-items: flex-start; }
+.leads-layout .detail .section-heading > div { min-width: 0; }
+.leads-layout .detail .section-heading > button { flex-shrink: 0; }
+@media (max-width: 1100px) {
+  .leads-layout.has-detail { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Kampanyalar: geniş ekranda iki sütun, telefonda tek sütun. */
+.campaign-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.campaign-filters { margin-bottom: 0; }
+.campaign-card { margin-bottom: 0; border-top: 3px solid var(--color-brand); display: flex; flex-direction: column; min-width: 0; overflow-wrap: anywhere; }
+.campaign-card-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.campaign-channel { font-size: 13px; color: var(--color-muted); }
+.campaign-card h3 { font-size: 21px; margin: 20px 0 10px; }
+.campaign-description { color: var(--color-muted); font-size: 14px; flex: 1; }
+.campaign-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; border-top: 1px solid var(--color-border); padding-top: 16px; margin: 8px 0 0; }
+.campaign-info dt { font-size: 12px; color: var(--color-muted); }
+.campaign-info dd { margin: 4px 0 0; font-size: 14px; font-weight: 600; }
+.campaign-status-draft { background: var(--color-page); color: var(--color-muted); }
+.campaign-status-completed { background: var(--color-text); color: var(--color-surface); }
+@media (max-width: 900px) {
+  .campaign-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Fare kartın üzerindeyken yumuşak bir vurgu göster. */
+.campaign-card {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .campaign-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgb(0 113 122 / 12%);
+    border-color: var(--color-brand);
+  }
+}
+/* Hareketi azaltma tercihinde yalnızca renk ve gölge vurgusu kalır. */
+@media (prefers-reduced-motion: reduce) {
+  .campaign-card { transition: none; }
+  .campaign-card:hover { transform: none; }
 }
