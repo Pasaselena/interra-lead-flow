@@ -1,0 +1,34 @@
+/* Uygulamanın tamamında geçerli olan temel kurallar. */
+/* Renkleri buradan değiştir: var(...) kullanan tüm alanlar güncellenir.
+   Ana turkuaz proje notlarından; diğer tonlar arayüz için seçildi. */
+:root {
+  --color-brand: #00adbb;
+  --color-brand-dark: #00717a;
+  --color-brand-soft: #e5f7f8;
+  --color-text: #242424;
+  --color-muted: #595959;
+  --color-page: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-border: #dddddd;
+  --color-input-border: #ababab;
+  --color-danger: #ac3826;
+
+  font-family: Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-page);
+  line-height: 1.5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button, input, select, textarea { border-radius: 8px; }
+button { border: 1px solid transparent; background: var(--color-brand); color: var(--color-text); padding: 10px 16px; font-weight: 600; }
+button:hover { filter: brightness(.94); }
+input, select, textarea { width: 100%; border: 1px solid var(--color-input-border); background: var(--color-surface); color: var(--color-text); padding: 10px; }
+textarea { resize: vertical; }
+label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+:focus-visible { outline: 3px solid var(--color-brand-dark); outline-offset: 3px; }
+h1, h2, p { margin-top: 0; }
+h2 { font-size: 20px; }
+small { display: block; color: var(--color-muted); font-size: 13px; }
