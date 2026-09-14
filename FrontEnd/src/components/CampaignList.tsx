@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import CampaignDetail from './CampaignDetail'
 import { campaignStatuses, type Campaign } from '../data/campaigns'
-import { formatDate } from '../data/leads'
 
 type Props = { campaigns: Campaign[] }
 
 export default function CampaignList({ campaigns }: Props) {
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('')
+  // Aynı anda tek kampanyanın ayrıntılarını gösteriyoruz.
+  const [expandedId, setExpandedId] = useState<string | null>(null)
 
   // Arama ve durum filtresi birlikte çalışır; asıl kampanya listesi değişmez.
   const visibleCampaigns = campaigns.filter(campaign =>
@@ -14,8 +16,10 @@ export default function CampaignList({ campaigns }: Props) {
     (!status || campaign.status === status),
   )
 
+  const selectedCampaign = visibleCampaigns.find(campaign => campaign.id === expandedId)
+
   return (
-    <section aria-labelledby="campaign-list-title">
+    <section className="campaigns-section" aria-labelledby="campaign-list-title">
       <div className="panel">
         <div className="section-heading">
           <h2 id="campaign-list-title">Tüm kampanyalar</h2>
@@ -44,24 +48,33 @@ export default function CampaignList({ campaigns }: Props) {
         </div>
       </div>
 
+      <div className="campaign-layout">
       <div className="campaign-grid">
         {visibleCampaigns.map(campaign => (
           <article className="panel campaign-card" key={campaign.id}>
             <div className="campaign-card-heading">
-              <span className="campaign-channel">{campaign.channel}</span>
               <span className={`badge campaign-status-${campaign.status === 'Aktif' ? 'active' : campaign.status === 'Taslak' ? 'draft' : 'completed'}`}>
                 {campaign.status}
               </span>
             </div>
             <h3>{campaign.name}</h3>
             <p className="campaign-description">{campaign.description}</p>
-            <dl className="campaign-info">
-              <div><dt>Başlangıç</dt><dd>{formatDate(campaign.startDate)}</dd></div>
-              <div><dt>Bitiş</dt><dd>{formatDate(campaign.endDate)}</dd></div>
-              <div><dt>Sorumlu</dt><dd>{campaign.owner}</dd></div>
-            </dl>
+            <button
+              type="button"
+              className="campaign-detail-button"
+              aria-haspopup="dialog"
+              aria-label={`${campaign.name}: detayları gör`}
+              onClick={() => setExpandedId(campaign.id)}
+            >
+              Detayları Gör
+              <span aria-hidden="true">↗</span>
+            </button>
           </article>
         ))}
+      </div>
+      {selectedCampaign && (
+        <CampaignDetail campaign={selectedCampaign} onClose={() => setExpandedId(null)} />
+      )}
       </div>
       {visibleCampaigns.length === 0 && (
         <p className="panel empty">Bu aramaya uygun kampanya bulunamadı. Aramanı değiştirebilir veya filtreleri temizleyebilirsin.</p>
