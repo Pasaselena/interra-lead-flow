@@ -7,7 +7,7 @@ Kampanya ve potansiyel müşteri takip uygulaması. Önce frontend demo verilerl
 Node.js ve npm kurulu olmalıdır. Proje ana klasöründe:
 
 ```bash
-cd "LeadFlow FrontEnd"
+cd "FrontEnd"
 npm ci
 npm run dev
 ```
