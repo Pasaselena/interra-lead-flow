@@ -8,6 +8,9 @@ export type Campaign = {
   status: typeof campaignStatuses[number]
   startDate: string
   endDate: string
+  plannedBudget: number | null
+  actualSpend: number | null
+  currency: 'TRY'
   owner: string
 }
 
@@ -21,6 +24,9 @@ export const initialCampaigns: Campaign[] = [
     status: 'Aktif',
     startDate: '2026-09-01',
     endDate: '2026-09-30',
+    plannedBudget: null,
+    actualSpend: null,
+    currency: 'TRY',
     owner: 'Selena',
   },
   {
@@ -31,6 +37,9 @@ export const initialCampaigns: Campaign[] = [
     status: 'Taslak',
     startDate: '2026-10-01',
     endDate: '2026-10-31',
+    plannedBudget: null,
+    actualSpend: null,
+    currency: 'TRY',
     owner: 'Atanmadı',
   },
   {
@@ -41,6 +50,9 @@ export const initialCampaigns: Campaign[] = [
     status: 'Tamamlandı',
     startDate: '2026-08-01',
     endDate: '2026-08-31',
+    plannedBudget: null,
+    actualSpend: null,
+    currency: 'TRY',
     owner: 'Selena',
   },
 ]

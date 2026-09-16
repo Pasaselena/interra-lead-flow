@@ -15,8 +15,7 @@ export default function LeadForm({ onSave, onCancel }: Props) {
     onSave({ ...draft, company: draft.company.trim(), name: draft.name.trim(), owner: draft.owner.trim() || 'Atanmadı' })
   }
   return (
-    <section className="panel" aria-labelledby="form-title">
-      <h2 id="form-title">Yeni lead ekle</h2>
+    <div>
       <form onSubmit={submit}>
         <div className="form-grid">
           <label>Firma *<input autoFocus required value={draft.company} onChange={e => update('company', e.target.value)} /></label>
@@ -31,6 +30,6 @@ export default function LeadForm({ onSave, onCancel }: Props) {
         <label>Notlar<textarea rows={3} value={draft.notes} onChange={e => update('notes', e.target.value)} /></label>
         <div className="actions"><button type="submit">Lead'i kaydet</button><button type="button" className="secondary" onClick={onCancel}>Vazgeç</button></div>
       </form>
-    </section>
+    </div>
   )
 }
