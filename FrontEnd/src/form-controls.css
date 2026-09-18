@@ -1,0 +1,65 @@
+/* Tüm sayfalar ve popup'lar için ortak form ölçüleri. */
+:root {
+  --field-height: 44px;
+  --field-radius: 8px;
+  --field-font-size: 14px;
+  --field-padding: 10px 12px;
+}
+:root input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+:root select,
+:root .task-date-trigger {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: var(--field-height);
+  min-height: var(--field-height);
+  padding: var(--field-padding);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--field-radius);
+  background-color: var(--color-page);
+  color: var(--color-text);
+  font-size: var(--field-font-size);
+  font-weight: 400;
+  line-height: 20px;
+}
+:root input[type="search"] { appearance: none; }
+:root textarea {
+  min-width: 0;
+  min-height: 110px;
+  padding: var(--field-padding);
+  border-radius: var(--field-radius);
+  font-size: var(--field-font-size);
+  font-weight: 400;
+  line-height: 1.5;
+}
+:root input[type="checkbox"], :root input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  flex-shrink: 0;
+  margin: 2px 0 0;
+  padding: 0;
+  accent-color: var(--color-brand);
+}
+:root input:disabled, :root select:disabled, :root textarea:disabled { opacity: .55; cursor: not-allowed; }
+.filters > button { min-height: var(--field-height); }
+/* Küçük takvim başlığı ve ayarlar, aynı tasarımın kompakt çeşidi. */
+:root .task-date-selectors select { --field-height: 34px; --field-padding: 4px; --field-font-size: 13px; }
+:root .settings-row select { --field-height: 40px; --field-padding: 8px 10px; --field-font-size: 13px; width: 136px; }
+
+/* Ana takvimde ay/yıl, kutu yerine tıklanabilir başlık görünümünde. */
+:root .calendar-month-selectors select {
+  width: auto;
+  height: 36px;
+  min-height: 36px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 4px;
+  background-color: transparent;
+  appearance: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+:root .calendar-month-selectors select:hover { color: var(--color-brand-dark); }
+:root .calendar-month-selectors select option { background: var(--color-surface); color: var(--color-text); }

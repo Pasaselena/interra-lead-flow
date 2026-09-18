@@ -1,0 +1,10 @@
+.toast-region { position: fixed; top: auto; bottom: 20px; right: 20px; width: min(380px, calc(100vw - 32px)); z-index: 1100; pointer-events: none; }
+.toast-success { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-brand); border-left-width: 4px; border-radius: 10px; box-shadow: 0 10px 32px rgb(0 0 0 / 30%); pointer-events: auto; }
+.toast-check { display: grid; place-items: center; width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: var(--color-brand-soft); color: var(--color-brand-dark); }
+.toast-success > div { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.toast-success strong { font-size: 14px; }
+.toast-success p { margin: 4px 0 0; color: var(--color-muted); font-size: 13px; }
+.toast-dismiss { background: transparent; color: var(--color-muted); padding: 0; min-width: 32px; min-height: 32px; font-size: 22px; }
+@media (max-width: 700px) { .toast-region { bottom: max(12px, env(safe-area-inset-bottom)); right: 16px; } }
+/* Popover üst katmanı dialog pencerelerinin üstünde de görünür. */
+.toast-region { margin: 0; left: auto; padding: 0; border: 0; background: transparent; overflow: visible; }

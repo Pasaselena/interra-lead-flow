@@ -1,0 +1,16 @@
+/* Tarih alanına bağlı, formun üzerine açılan küçük takvim. */
+.task-date-field { display: grid; gap: 6px; font-size: 14px; font-weight: 600; min-width: 0; }
+.task-date-trigger { display: flex; justify-content: space-between; align-items: center; width: 100%; background: var(--color-page); border-color: var(--color-input-border); text-align: left; }
+.task-date-calendar { position: fixed; z-index: 10; width: min(320px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow-y: auto; padding: 12px; margin: 0; border: 1px solid var(--color-brand); border-radius: 12px; background: var(--color-surface); box-shadow: 0 8px 24px rgb(0 0 0 / 20%); }
+.task-date-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+.task-date-selectors { display: grid; grid-template-columns: minmax(0, 1fr) 78px; gap: 6px; flex: 1; min-width: 0; }
+.task-date-selectors select { min-height: 34px; padding: 4px; font-size: 13px; font-weight: 600; }
+.task-date-header button { min-width: 34px; min-height: 34px; padding: 4px; font-size: 20px; }
+.task-date-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.task-date-weekday { text-align: center; color: var(--color-muted); font-size: 12px; padding-bottom: 8px; }
+.task-date-days button { min-height: 34px; padding: 4px 0; font-size: 13px; color: var(--color-text); background: var(--color-page); }
+.task-date-days button[aria-current="date"] { border-color: var(--color-brand); }
+.task-date-days button[aria-pressed="true"] { color: var(--color-on-brand); background: var(--color-brand); }
+.task-date-footer { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.task-date-footer button { font-size: 12px; min-height: 34px; padding: 6px 10px; }
+@media (max-width: 450px) { .task-date-calendar { padding: 10px; } .task-date-days { gap: 2px; } }
