@@ -1,3 +1,4 @@
+import type { CampaignEmail } from './data/campaignEmails'
 import Dashboard from './components/Dashboard'
 import FormModal from './components/FormModal'
 import Reports from './components/Reports'
@@ -27,6 +28,7 @@ import './panel-theme.css'
 function App() {
   // State: değiştiğinde React'in ekranı yeniden oluşturduğu bilgiler.
   const [leads, setLeads] = useState<Lead[]>(initialLeads)
+  const [campaignEmails, setCampaignEmails] = useState<CampaignEmail[]>([])
   const [customers, setCustomers] = useState<Customer[]>([])
   const [showLeadForm, setShowLeadForm] = useState(false)
   const [tasks, setTasks] = useState<Task[]>([])
@@ -96,7 +98,10 @@ function App() {
         onAddLead={() => { setMessage(''); setShowLeadForm(true) }}
         onOpenLead={id => { navigate('leads'); setLeadView('list'); setSearch(''); setStatus(''); setOwner(''); setSelectedId(id) }}
       />}
-      {page === 'campaigns' && <CampaignList campaigns={initialCampaigns} />}
+      {page === 'campaigns' && <CampaignList campaigns={initialCampaigns} customers={customers} emails={campaignEmails} onSendDemo={draft => {
+        setCampaignEmails(current => [{ ...draft, id: crypto.randomUUID(), createdAt: new Date().toISOString() }, ...current])
+        setMessage(`${draft.recipients.length} alıcı için demo oluşturuldu. Gerçek e-posta gönderilmedi.`)
+      }} />}
       {page === 'reports' && <Reports leads={leads} customers={customers} deals={deals} tasks={tasks} campaigns={initialCampaigns} />}
       {page === 'customers' && <Customers customers={customers} onSave={saveCustomer} />}
       {page === 'sales' && <SalesPipeline deals={deals} leads={leads}

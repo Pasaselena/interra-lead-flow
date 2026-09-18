@@ -1,0 +1,16 @@
+.campaign-email { margin-top: 24px; border-top: 1px solid var(--color-border); padding-top: 20px; }
+.campaign-email .actions { flex-wrap: wrap; margin: 12px 0; }
+.campaign-email .actions button { font-size: 12px; }
+.email-recipients { max-height: 220px; overflow-y: auto; margin: 12px 0; }
+.email-recipient { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--color-border); overflow-wrap: anywhere; }
+.email-recipient input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--color-brand); }
+.email-recipient > span { min-width: 0; }
+.email-recipient small { font-weight: 400; }
+.email-preview { padding: 20px; border-radius: 10px; background: white; color: #203438; margin: 16px 0; overflow-wrap: anywhere; }
+.email-preview > small { color: #52676b; }
+.email-preview p { white-space: pre-wrap; margin-bottom: 0; }
+.email-preview-recipients { max-height: 160px; overflow-y: auto; padding-left: 20px; font-size: 13px; overflow-wrap: anywhere; }
+.email-history { border-top: 1px solid var(--color-border); padding-top: 20px; margin-top: 24px; }
+.email-history details { margin-top: 12px; padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; overflow-wrap: anywhere; }
+.email-history summary { cursor: pointer; font-size: 13px; }
+.email-history p { white-space: pre-wrap; font-size: 13px; }
