@@ -1,0 +1,22 @@
+/* Harita üzerinde kompakt, beyaz bilgi kartı. */
+.leaflet-tooltip.lead-hover-tooltip {
+  width: min(220px, 65vw);
+  padding: 12px;
+  white-space: normal;
+  color: #203438;
+  background: #ffffff;
+  border: 1px solid #d9e5e7;
+  border-radius: 9px;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 20%);
+  font-family: inherit;
+}
+.lead-hover-tooltip.leaflet-tooltip-right::before { border-right-color: #ffffff; }
+.lead-hover-tooltip.leaflet-tooltip-left::before { border-left-color: #ffffff; }
+.map-hover-card { overflow-wrap: anywhere; }
+.map-hover-title { display: block; font-size: 13px; }
+.map-hover-location { display: block; margin-top: 3px; font-size: 10px; color: #52676b; }
+.map-hover-status { display: inline-block; margin-top: 7px; padding: 2px 6px; border-radius: 5px; background: #e5f7f8; color: #00717a; font-size: 10px; }
+.map-hover-card dl { display: grid; gap: 5px; margin: 8px 0 0; }
+.map-hover-card dl > div { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 6px; font-size: 11px; }
+.map-hover-card dt { color: #52676b; }
+.map-hover-card dd { margin: 0; }
