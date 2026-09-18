@@ -75,3 +75,58 @@
   .page-header h1 { font-size: 26px; }
   .follow-up { padding: 18px; }
 }
+
+.task-status-overdue { --task-color: #ff929b; }
+.task-status-pending { --task-color: #64d6a1; }
+.task-status-completed { --task-color: var(--color-muted); }
+:root[data-theme="light"] .task-status-overdue { --task-color: #b32335; }
+:root[data-theme="light"] .task-status-pending { --task-color: #187244; }
+.calendar-day.has-tasks[aria-pressed="true"], .calendar-day.has-tasks[aria-pressed="true"]:hover {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+.calendar-day .calendar-task-symbol { color: var(--task-color); }
+.task-status-label { color: var(--color-muted); font-weight: 600; }
+/* Listede durum rengi küçük ayrıntılarda kullanılır; kart zemini nötrdür. */
+.task-card.task-status-overdue { --task-accent: #dc2626; }
+.task-card.task-status-pending { --task-accent: #15803d; }
+.task-card.task-status-completed { --task-accent: #52616b; }
+.task-card { border-left: 3px solid var(--task-accent); }
+.task-card .task-status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--task-accent) 12%, var(--color-surface));
+  color: var(--task-color);
+  font-size: 11px;
+}
+.task-card .task-status-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--task-accent);
+}
+/* Durum rengi yalnızca takvim kutusunun tüm yüzeyine uygulanır. */
+.calendar-day.task-status-overdue { --day-fill: #dc2626; }
+.calendar-day.task-status-pending { --day-fill: #15803d; }
+.calendar-day.task-status-completed { --day-fill: #52616b; }
+.calendar-day.has-tasks,
+.calendar-day.has-tasks:hover,
+.calendar-day.has-tasks[aria-pressed="true"],
+.calendar-day.has-tasks[aria-pressed="true"]:hover {
+  background: var(--day-fill);
+  border-color: var(--day-fill);
+  color: #ffffff;
+  box-shadow: none;
+}
+.calendar-day.has-tasks .calendar-task-symbol { color: #ffffff; }
+.calendar-day.has-tasks .calendar-task-symbol.task-status-completed { opacity: .75; }
+.task-color-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; font-size: 12px; color: var(--color-muted); }
+.task-color-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.task-color-legend i { width: 8px; height: 8px; border-radius: 50%; background: var(--task-color); }

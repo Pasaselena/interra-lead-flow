@@ -107,6 +107,8 @@ function App() {
         onOpenLead={id => { navigate('leads'); setLeadView('list'); setSearch(''); setStatus(''); setOwner(''); setSelectedId(id) }}
       />}
       {page === 'tasks' && <TasksCalendar tasks={tasks} leads={leads}
+        onDelete={id => setTasks(current => current.filter(task => task.id !== id))}
+        onUpdate={updated => setTasks(current => current.map(task => task.id === updated.id ? updated : task))}
         onAdd={draft => setTasks(current => [...current, { ...draft, id: crypto.randomUUID(), done: false }])}
         onToggle={id => setTasks(current => current.map(task => task.id === id ? { ...task, done: !task.done } : task))}
         onOpenLead={id => { navigate('leads'); setLeadView('list'); setSearch(''); setStatus(''); setOwner(''); setSelectedId(id) }}
