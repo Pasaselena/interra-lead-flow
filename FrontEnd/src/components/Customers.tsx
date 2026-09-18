@@ -6,14 +6,13 @@ import FormModal from './FormModal'
 type Props = { customers: Customer[]; onSave: (draft: CustomerDraft, id?: string) => void }
 
 export default function Customers({ customers, onSave }: Props) {
-  const [search, setSearch] = useState('')
+  const [customerId, setCustomerId] = useState('')
   const [owner, setOwner] = useState('')
   // null: kapalı, 'new': yeni kayıt, Customer: düzenlenecek mevcut kayıt.
   const [editor, setEditor] = useState<Customer | 'new' | null>(null)
   const [notice, setNotice] = useState('')
   const visible = customers.filter(customer =>
-    `${customer.company} ${customer.contact} ${customer.email} ${customer.phone} ${customer.city}`
-      .toLocaleLowerCase('tr-TR').includes(search.trim().toLocaleLowerCase('tr-TR')) && (!owner || customer.owner === owner))
+    (!customerId || customer.id === customerId) && (!owner || customer.owner === owner))
 
   return <section className="panel" aria-labelledby="customers-title">
     <div className="section-heading lead-list-heading">
@@ -21,9 +20,12 @@ export default function Customers({ customers, onSave }: Props) {
       <button type="button" aria-haspopup="dialog" onClick={() => { setNotice(''); setEditor('new') }}>+ Yeni Müşteri</button>
     </div>
     <div className="filters">
-      <label className="search">Müşteri ara<input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Firma, kişi, iletişim veya şehir…" /></label>
+      <label className="search">Müşteri seç<select value={customerId} onChange={e => setCustomerId(e.target.value)}>
+        <option value="">Tüm müşteriler</option>
+        {[...customers].sort((a, b) => a.company.localeCompare(b.company, 'tr')).map(customer => <option key={customer.id} value={customer.id}>{customer.company} · {customer.contact}</option>)}
+      </select></label>
       <label>Sorumlu<select value={owner} onChange={e => setOwner(e.target.value)}><option value="">Tüm sorumlular</option>{[...new Set(customers.map(customer => customer.owner))].map(value => <option key={value}>{value}</option>)}</select></label>
-      <button type="button" className="secondary" onClick={() => { setSearch(''); setOwner('') }}>Temizle</button>
+      <button type="button" className="secondary" onClick={() => { setCustomerId(''); setOwner('') }}>Temizle</button>
     </div>
     <p role="status" className="feedback">{notice}</p>
     {visible.length ? <div className="table-scroll"><table>
@@ -40,7 +42,7 @@ export default function Customers({ customers, onSave }: Props) {
       <CustomerForm customer={editor === 'new' ? null : editor} onCancel={() => setEditor(null)} onSave={draft => {
         onSave(draft, editor === 'new' ? undefined : editor.id)
         setNotice(editor === 'new' ? 'Müşteri eklendi.' : 'Müşteri bilgileri güncellendi.')
-        setEditor(null); setSearch(''); setOwner('')
+        setEditor(null); setCustomerId(''); setOwner('')
       }} />
     </FormModal>}
   </section>
