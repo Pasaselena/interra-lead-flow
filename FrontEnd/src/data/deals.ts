@@ -1,3 +1,4 @@
+import { getLocale, t } from '../i18n'
 export const dealStages = ['Görüşme', 'Teklif', 'Müzakere', 'Kazanıldı', 'Kaybedildi'] as const
 export type DealStage = typeof dealStages[number]
 export type Deal = {
@@ -25,7 +26,7 @@ export function dealTotals(deals: Deal[]) {
 }
 
 export function formatDealAmount(amount: number | null) {
-  return amount === null ? 'Tutar belirtilmedi' : new Intl.NumberFormat('tr-TR', {
+  return amount === null ? t('Tutar belirtilmedi') : new Intl.NumberFormat(getLocale(), {
     style: 'currency', currency: 'TRY', maximumFractionDigits: 2,
   }).format(amount)
 }
